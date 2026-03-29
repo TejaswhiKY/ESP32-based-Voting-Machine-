@@ -56,6 +56,7 @@ System starts and LCD shows "Voting Machine"
 LCD turns OFF after initialization
 
 When a button is pressed:
+
  -Vote count increases
 
  
