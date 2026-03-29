@@ -57,9 +57,16 @@ LCD turns OFF after initialization
 
 When a button is pressed:
  -Vote count increases
+
+ 
  -LCD turns ON
+
+ 
  -Displays selected candidate vote
+
+ 
  -After 3 seconds, LCD turns OFF
+ 
 - Process repeats for each vote
 
 ------------------------------------------
