@@ -1,0 +1,81 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Button pins
+const int button1 = 32;
+const int button2 = 33;
+const int button3 = 14;
+
+// Vote counters
+int vote1 = 0;
+int vote2 = 0;
+int vote3 = 0;
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+
+  pinMode(button1, INPUT_PULLUP);
+  pinMode(button2, INPUT_PULLUP);
+  pinMode(button3, INPUT_PULLUP);
+
+  lcd.setCursor(0, 0);
+  lcd.print("Voting Machine");
+  lcd.setCursor(0, 1);
+  lcd.print("Ready...");
+  delay(2000);
+  lcd.clear();
+  lcd.noBacklight(); // LCD OFF initially
+}
+
+void loop() {
+
+  // BUTTON 1
+  if (digitalRead(button1) == LOW) {
+    vote1++;
+
+    lcd.backlight();   // LCD ON
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Candidate 1");
+    lcd.setCursor(0, 1);
+    lcd.print(vote1);
+
+    delay(3000);       // Show for 3 sec
+    lcd.noBacklight(); // LCD OFF
+  }
+
+  // BUTTON 2
+  if (digitalRead(button2) == LOW) {
+    vote2++;
+
+    lcd.backlight();
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Candidate 2");
+    lcd.setCursor(0, 1);
+    lcd.print(vote2);
+
+    delay(3000);
+    lcd.noBacklight();
+  }
+
+  // BUTTON 3
+  if (digitalRead(button3) == LOW) {
+    vote3++;
+
+    lcd.backlight();
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Candidate 3");
+    lcd.setCursor(0, 1);
+    lcd.print(vote3);
+
+    delay(3000);
+    lcd.noBacklight();
+  }
+
+  delay(200); // small debounce
+}
